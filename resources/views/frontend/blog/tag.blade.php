@@ -16,8 +16,14 @@
                                 </a>
                             </li>
                             <li>
-                                {{ __('Blog') }}
+                                <a href="{{ route('blog.index.show') }}">
+                                    {{ __('Blog')}}
+                                </a>
                             </li>
+                            <li>
+                                {{ $tag->name }}
+                            </li>
+                            
                         </ul>
                     </div>
                     <div class="articles-list mt-40">

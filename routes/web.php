@@ -13,7 +13,8 @@ Route::get('/login', 'LoginController@index')->name('login');
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/profile/{id}', 'ProfileController@profileShow')->name('profileUser.show');
 
-Route::get('/filter/{category}', 'IndexController@filter')->name('filter.all');
+// Route::get('/specialists', 'IndexController@specialists')->name('specialists');
+Route::get('/filter/{category?}', 'IndexController@filter')->name('filter.all');
 
 Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}']], function () {
     Route::get('/', 'IndexController@index')->name('home-locale');
@@ -21,9 +22,9 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}']], f
 
 Route::group(['prefix' => 'blog'], function() {
     Route::get('/', 'BlogController@index')->name('blog.index.show');
+    Route::get('/article/{id}', 'BlogController@show')->name('blog.article.show');
+    Route::get('/tag/{slug}', 'BlogController@tag')->name('blog.tag.show');
 });
-
-
 
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
     Route::get('/', 'ProfileController@index')->name('profile.index');
