@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Group;
 use App\Services\ReviewService;
 use Illuminate\Http\Request;
 
@@ -62,21 +64,20 @@ class IndexController extends Controller
         return view('frontend.index', compact('cities', 'categories', 'reviews', 'allCategoriesPeople', 'usersCategories'));
     }
 
-    public function filter(int $category, Request $request)
+    public function filter(int $category = null, Request $request)
     {
-        $class = 'filters-search-page';
+        // $class = 'filters-search-page';
+        $categoryCurrent = false;
 
-        if ($category === 127) $users = $this->userService->getPeoplePagination(1);
-        else $users = $this->userService->getPeopleCategoryPagination($category, 5);
+        if ($category !== null && !$categoryCurrent = $this->categoryService->getCategoryById($category)) 
+            abort(404);
 
-        if(!$categoryCurrent = $this->categoryService->getCategoryById($category)) abort(404);
+        $this->setMeta('Поиск специалиста', 'Description');
 
-
-        $cities = $this->cityService->getCitiesName();
-
-
-        $this->setMeta('Главная', 'Description');
-
-        return view('frontend.search', compact('class', 'users', 'cities' ,'categoryCurrent'));
+        return view('frontend.search', [
+            'categoryCurrent' => $categoryCurrent,
+            'cities' => City::list(),
+            'groups' => Group::list(),
+        ]);
     }
 }

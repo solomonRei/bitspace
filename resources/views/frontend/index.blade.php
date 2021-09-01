@@ -10,9 +10,9 @@
                     <div class="info-text">
                         Более 10000 специалистов из 20+ сфер деятельности
                     </div>
-                    <form action="/" class="search-box">
+                    <form action="{{ route('filter.all') }}" class="search-box">
                         <div class="form-control">
-                            <select name="choices" class="custom-select" placeholder="Выберите направление">
+                            <select name="category" class="custom-select" placeholder="Выберите направление">
                                 @foreach($categories as $key => $category)
                                     @if ($category->id === 127) @continue @endif
                                     @isset($category->categoryStrings[0])
@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="form-control">
-                            <select name="choices" class="custom-select" placeholder="Выберите город">
+                            <select name="city" class="custom-select" placeholder="Выберите город">
                                 @foreach($cities as $key => $city)
                                     @isset($city->cityStrings[0])
                                     <option value="{{ $city->id }}">{{ $city->cityStrings[0]->name }}</option>
@@ -32,9 +32,9 @@
 
                             </select>
                         </div>
-                        <a href="#" class="button primary">
+                        <button class="button primary" type="submit">
                             Искать
-                        </a>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -348,7 +348,7 @@
                 </div>
             </div>
             <div class="button_container mt-40">
-                <a href="{{ route('filter.all', ['category' => 127]) }}" class="button dark-outline">
+                <a href="{{ route('filter.all') }}" class="button dark-outline">
                     Все специалисты
                 </a>
             </div>

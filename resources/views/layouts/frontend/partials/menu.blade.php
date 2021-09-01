@@ -1,6 +1,6 @@
 
 <li>
-    <a href="{{ route('filter.all', ['category' => 127]) }}">
+    <a href="{{ route('filter.all') }}">
         {{ __('custom.menu_specialists') }}
     </a>
 </li>
