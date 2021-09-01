@@ -9,6 +9,7 @@ use App\Traits\File;
 
 class UsersStrings extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory, File;
     public $timestamps = false;
     public $table = 'users_strings';

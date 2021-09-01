@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
+use App\Traits\Languages;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use HasFactory, CrudTrait;
+    use HasFactory, CrudTrait, Languages;
+
     public $timestamps = false;
 
     public function categoryStrings()
     {
         return $this->hasMany(\App\Models\CategoryStrings::class, 'category_id');
-//        return $this->hasManyThrough(\App\Models\Language::class, \App\Models\CityStrings::class, 'city_id', 'id', 'id', 'lang_id');
     }
 
     public function userCategory()
@@ -26,5 +27,14 @@ class Category extends Model
     {
 
         return isset($this->categoryStrings[0]->name) ? ucfirst($this->categoryStrings[0]->name) : '';
+    }
+
+    public function stringByLang(int $lang_id = null)
+    {
+        if ($lang_id === null) {
+            $lang_id = $this->getLangId();
+        }
+
+        return $this->categoryStrings()->where('lang_id', $lang_id)->first();
     }
 }

@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Languages;
 use App\Traits\File;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes, Languages, File;
+    use HasFactory, Notifiable, SoftDeletes, Languages, File, CrudTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -74,6 +75,35 @@ class User extends Authenticatable
         return $this->hasMany(\App\Models\UsersStrings::class, 'user_id');
     }
 
+    public function userStringsByLang()
+    {
+        return $this->hasOne(\App\Models\UsersStrings::class, 'user_id')
+            ->where('lang_id', $this->getLangId());
+    }
+
+    public function city()
+    {
+        return $this->hasOne(City::class, 'id', 'city_id');
+    }
+
+    public function cityName()
+    {
+        return $this->hasOneThrough(CityStrings::class, City::class, 'id', 'city_id', 'city_id', 'id')
+            ->where('lang_id', $this->getLangId());
+    }
+
+    public function categoryName()
+    {
+        return $this->hasOneThrough(CategoryStrings::class, Category::class, 'id', 'category_id', 'category_id', 'id')
+            ->where('lang_id', $this->getLangId());
+    }
+
+    public function GroupName()
+    {
+        return $this->hasOneThrough(GroupStrings::class, Group::class, 'id', 'group_id', 'group_id', 'id')
+            ->where('lang_id', $this->getLangId());
+    }
+
     public function scopeIsSearched($query)
     {
         return $query->where('is_searched', 0);
@@ -84,7 +114,7 @@ class User extends Authenticatable
         return $query->where('type', 0);
     }
 
-    public function scopeIsHided($query)
+    public function scopeIsShown($query)
     {
         return $query->where('is_hided', 0);
     }
@@ -94,11 +124,11 @@ class User extends Authenticatable
         $this->attributes['is_hided'] = $value == 'on' ? 1 : 0;
     }
 
-
     public function setIsSearchedAttribute($value)
     {
         $this->attributes['is_searched'] = $value == 'on' ? 1 : 0;
     }
+
 
 //    public function setNameAttribute($value)
 //    {
