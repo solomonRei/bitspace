@@ -7,8 +7,7 @@ $(document).ready(function() {
     =============================================*/
     /* Generate custom select */
     const selects = Array.from(document.getElementsByClassName('custom-select'));
-
-    selects.forEach((select) => {
+    function createCustomSelect(select) {
         const classes = select.getAttribute('class');
         const options = Array.from(select.getElementsByTagName('option'));
         const wrapper = createEl("div", "custom-select-wrapper");
@@ -16,14 +15,23 @@ $(document).ready(function() {
         const options_wrapper = createEl("div", "custom-options");
         const template = createTemplate(classes, span);
 
-        span.innerText = select.getAttribute("placeholder");
+        span.innerText = select.value 
+            ? select.options[select.selectedIndex].text 
+            : select.getAttribute("placeholder");
 
-        generateOptions(options, options_wrapper);
+        generateOptions(options, options_wrapper, select.value);
 
         template.appendChild(options_wrapper);
         wrap(select, wrapper);
         select.after(template);
+    };
+
+    const inputEvent = new Event('input', {
+        bubbles: true,
+        cancelable: true,
     });
+
+    selects.forEach((select) => createCustomSelect(select));
 
     /* Add event on clicked select */
     const triggers = Array.from(document.getElementsByClassName('custom-select-trigger'));
@@ -45,9 +53,9 @@ $(document).ready(function() {
             const trigger = findAncestor(option, "custom-options").previousSibling;
 
             select.value = option.getAttribute("data-value");
+            select.dispatchEvent(inputEvent);
             customSelect.classList.toggle("opened");
             trigger.innerText = option.innerText;
-
 
         })
     });
@@ -57,7 +65,7 @@ $(document).ready(function() {
         return el;
     }
 
-    function generateOptions(options, wrapper) {
+    function generateOptions(options, wrapper, selectedValue) {
         options.forEach((option) => {
             const html_option = document.createElement('span');
             html_option.classList.add(`custom-option`);

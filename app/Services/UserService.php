@@ -125,7 +125,7 @@ class UserService
     {
 
         return $user->map(function ($u) {
-            $group = \App\Models\Group::with('groupString')->whereId($u->group_id)->IsShowed()->first();
+            $group = \App\Models\Group::with('groupStrings')->whereId($u->group_id)->IsShowed()->first();
 
             $data = ['group' => '', 'city' => '', 'user' => $u, 'userStrings' => ['is_exists' => true, 'data' => '']];
 
@@ -141,14 +141,14 @@ class UserService
             if (!$user_strings = $this->userRepository->getUsersStringsById($u->id)) $data['userStrings']['is_exists'] = false;
             else $data['userStrings']['data'] = $user_strings;
 
-            if ($group->groupString()->count() > 0) {
+            if ($group->groupStrings()->count() > 0) {
 
                 $group_return = false;
-                foreach ($group->groupString()->get() as $gr) {
+                foreach ($group->groupStrings()->get() as $gr) {
                     if ($gr->lang_id === $this->getLangId()) $group_return = $gr;
                 }
 
-                if (!$group_return) $group_return = $group->groupString()->where('lang_id', $this->getLangMainId())->first();
+                if (!$group_return) $group_return = $group->groupStrings()->where('lang_id', $this->getLangMainId())->first();
 
                 $data['group'] = $group_return->name;
             }

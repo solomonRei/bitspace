@@ -17,4 +17,9 @@ class CityService
         return $this->cityRepository->getCitiesWithRelations();
     }
 
+    public function getCityById(int $id)
+    {
+        return $this->cityRepository->getCityById($id);
+    }
+
 }

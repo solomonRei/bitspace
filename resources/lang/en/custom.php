@@ -42,5 +42,19 @@ return [
     'error' => 'Произошла ошибка, попробуйте позже',
 
     //admin
-    'categories_side_bar' => 'Categories'
+    'categories_side_bar' => 'Categories',
+
+    'blog' => 'Blog',
+    'other' => 'Other',
+    'users' => 'Users',
+    'group' => 'Group',
+    'groups' => 'Groups',
+    'city' => 'City',
+    'cities' => 'Cities',
+    'article' => 'Article',
+    'articles' => 'Articles',
+    'tags' => 'Tags',
+
+    'title' => 'Title',
+    'name' => 'Name',
 ];

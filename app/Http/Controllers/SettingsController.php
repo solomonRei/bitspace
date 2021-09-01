@@ -130,7 +130,6 @@ class SettingsController extends Controller
             foreach ($data as $lang_id => $fields) {
                 if (isset($fields['thumb'])) {
 //                    $this->fileService->deleteFilesByType(2);
-
                     $file_id = $this->fileService->storeFiles($fields['thumb'], 'presentation', 2);
                     if (!$this->fileService->createOrUpdateStrings([
                         'thumb' => $fields['thumb']

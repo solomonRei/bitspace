@@ -23,7 +23,7 @@ class UserRepository extends CoreRepository
 
     public function getUserActive($id)
     {
-        return User::isHided()->teachers()->whereId($id)->get();
+        return User::isShown()->teachers()->whereId($id)->get();
     }
 
     public function getAuthUser()
@@ -40,7 +40,7 @@ class UserRepository extends CoreRepository
     public function getPeopleByCategory($id, $count = 5)
     {
         return User::where('category_id', $id)
-            ->isHided()
+            ->isShown()
             ->isSearched()
             ->teachers()
             ->limit($count)
@@ -51,7 +51,7 @@ class UserRepository extends CoreRepository
     public function getPeopleByPaginate($id, $count = 5)
     {
         return User::where('category_id', $id)
-            ->isHided()
+            ->isShown()
             ->isSearched()
             ->teachers()
             ->orderBy('created_at')
@@ -62,7 +62,7 @@ class UserRepository extends CoreRepository
     public function getAll($count = 5)
     {
         return User::limit($count)
-            ->isHided()
+            ->isShown()
             ->isSearched()
             ->teachers()
             ->orderBy('created_at')
@@ -70,7 +70,7 @@ class UserRepository extends CoreRepository
     }
     public function getAllPagination($count = 5)
     {
-        return User::isHided()
+        return User::isShown()
             ->isSearched()
             ->teachers()
             ->orderBy('created_at')

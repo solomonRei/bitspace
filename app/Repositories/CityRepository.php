@@ -17,7 +17,7 @@ class CityRepository
 
     public function getCityById($id)
     {
-        return $this->where('id', $id)
+        return City::where('id', $id)
             ->first();
     }
 
