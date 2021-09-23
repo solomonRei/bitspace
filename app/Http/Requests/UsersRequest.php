@@ -26,7 +26,25 @@ class UsersRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'is_admin' => 'boolean',
+            'is_hided' => 'boolean',
+            'is_searched' => 'boolean',
+            'is_promoted' => 'boolean',
+            'banned' => 'boolean',
+            'name' => 'required|string|max:255',
+            'login' => 'required|string|max:255',
+            'avatar.file_path' => '',
+            'new_password' => 'string|min:6|nullable',
+            'userStringsByLang' => 'array|nullable',
+            'userStringsByLang.*' => 'array|nullable',
+            'userStringsByLang.*.name' => 'string|min:2|max:255|nullable',
+            'userStringsByLang.*.surname' => 'string|min:2|max:255|nullable',
+            'userStringsByLang.*.age' => 'string|nullable',
+            'userStringsByLang.*.education' => 'string|max:255|nullable',
+            'userStringsByLang.*.about' => 'string|nullable',
+            'userStringsByLang.*.experience' => 'string|nullable',
+            'userStringsByLang.*.id' => 'integer|nullable',
+            'userStringsByLang.*.lang_id' => 'required|integer|nullable',
         ];
     }
 

@@ -12,6 +12,7 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@index')->name('login');
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/profile/{id}', 'ProfileController@profileShow')->name('profileUser.show');
+Route::post('/questions', 'IndexController@questions')->name('questions.store');
 
 // Route::get('/specialists', 'IndexController@specialists')->name('specialists');
 Route::get('/filter/{category?}', 'IndexController@filter')->name('filter.all');

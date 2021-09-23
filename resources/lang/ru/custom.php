@@ -27,6 +27,7 @@ return [
     //forms
     'form_edit' => 'Изменить',
     'form_save' => 'Сохранить',
+    'form_send' => 'Отправить',
     'form_address' => 'Адресс',
     'form_password_from_profile' => 'Пароль от аккаунта',
     'form_changing_password' => 'Изменения пароля',
@@ -46,11 +47,14 @@ return [
 
     'blog' => 'Блог',
     'other' => 'Другое',
+    'user' => 'Пользователь',
     'users' => 'Пользователи',
     'group' => 'Группа',
     'groups' => 'Группы',
     'city' => 'Город',
     'cities' => 'Города',
+    'category' => 'Категория',
+    'categories' => 'Категории',
     'article' => 'Запись',
     'articles' => 'Записи',
     'tags' => 'Тэги',
@@ -58,5 +62,11 @@ return [
 
     'title' => 'Заголовок',
     'name' => 'Название',
+    'first_name' => 'Имя',
+    'surname' => 'Фамилия',
+    'age' => 'Возраст',
+    'education' => 'Образование',
+    'about' => 'Обо мне',
+    'experience' => 'Опыт'
 
 ];

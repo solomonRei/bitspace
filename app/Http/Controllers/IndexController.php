@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuestionsRequest;
 use App\Models\City;
 use App\Models\Group;
 use App\Services\ReviewService;
@@ -69,7 +70,7 @@ class IndexController extends Controller
         // $class = 'filters-search-page';
         $categoryCurrent = false;
 
-        if ($category !== null && !$categoryCurrent = $this->categoryService->getCategoryById($category)) 
+        if ($category !== null && !$categoryCurrent = $this->categoryService->getCategoryById($category))
             abort(404);
 
         $this->setMeta('Поиск специалиста', 'Description');
@@ -79,5 +80,14 @@ class IndexController extends Controller
             'cities' => City::list(),
             'groups' => Group::list(),
         ]);
+    }
+
+    public function questions(QuestionsRequest $request)
+    {
+        $validated_data = $request->validated();
+
+        toastr()->success(__('custom.success'));
+
+//        return back();
     }
 }

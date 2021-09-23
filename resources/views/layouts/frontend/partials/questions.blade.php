@@ -5,20 +5,21 @@
                 Остались вопросы? Оставьте заявку на консультацию
             </div>
             <div class="block-content">
-                <form action="">
+                <form action="{{ route('questions.store') }}" method="post">
+                    @csrf
                     <div class="form-groups">
                         <div class="form-control">
-                            <input type="text" placeholder="Ваше имя">
+                            <input type="text" name="Имя" placeholder="Ваше имя" value="{{$userAuth->name ?? ''}}">
                         </div>
                         <div class="form-control">
-                            <input type="text" placeholder="E-mail">
+                            <input type="text" name="email" placeholder="E-mail">
                         </div>
                         <div class="form-control">
-                            <input type="text" placeholder="+7 (___) ___ ___ __">
+                            <input type="text" name="phone" placeholder="+7 (___) ___ ___ __">
                         </div>
                     </div>
                     <button class="button primary">
-                        Искать
+                        @lang('custom.form_send')
                     </button>
                 </form>
             </div>

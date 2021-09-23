@@ -13,9 +13,9 @@ class CreateBlogTagsTable extends Migration
      */
     public function up()
     {
-        Schema::table('tags_strings', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement()->change();
-        });
+//        Schema::table('tags_strings', function (Blueprint $table) {
+////            $table->integer('id', true)->change();
+//        });
 
         Schema::create('blog_tags', function (Blueprint $table) {
             $table->id();

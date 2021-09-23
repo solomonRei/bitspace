@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\File as ModelsFile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -75,10 +76,25 @@ class User extends Authenticatable
         return $this->hasMany(\App\Models\UsersStrings::class, 'user_id');
     }
 
+    public function stringByLang(int $lang_id = null)
+    {
+        if ($lang_id === null) {
+            $lang_id = $this->getLangId();
+        }
+
+        return $this->hasOne(\App\Models\UsersStrings::class, 'user_id')
+            ->where('lang_id', $lang_id)->first();
+    }
+
     public function userStringsByLang()
     {
         return $this->hasOne(\App\Models\UsersStrings::class, 'user_id')
             ->where('lang_id', $this->getLangId());
+    }
+
+    public function avatar()
+    {
+        return $this->hasOne(ModelsFile::class, 'id', 'ava');
     }
 
     public function city()

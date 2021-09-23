@@ -13,6 +13,11 @@ class Category extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'categoryStrings.name',
+        'categoryStrings.lang_id',
+    ];
+
     public function categoryStrings()
     {
         return $this->hasMany(\App\Models\CategoryStrings::class, 'category_id');

@@ -34,9 +34,8 @@
                                 @endforeach
                             @endif
                         </div>
-
                         <div class="form-control mt-20">
-                            <input type="text" name="url[{{ $language->name }}]" value="@if($usersStringsState) {{ $usersStrings->mediafiles_url['presentation']['url'] }} @endif" placeholder="Введите url на видео">
+                            <input type="text" name="url[{{ $language->name }}]" value="@if(isset($usersStrings->mediafiles_url['presentation'])) {{ $usersStrings->mediafiles_url['presentation']['url'] }} @endif" placeholder="Введите url на видео">
                         </div>
                         <div class="title small mt-40">
                             Превью для видеопрезентации

@@ -27,9 +27,10 @@ return [
        //forms
     'form_edit' => 'Edit',
     'form_save' => 'Save',
-    'form_address' => 'Адресс',
+    'form_send' => 'Send',
+    'form_address' => 'Address',
     'form_password_from_profile' => 'Пароль от аккаунта',
-    'form_changing_password' => 'Изменения пароля',
+    'form_changing_password' => 'Change password',
     'form_2fa' => 'Двухэтапная авторизация',
     'form_hide_account' => 'Скрыть публичный профиль',
 
@@ -46,15 +47,25 @@ return [
 
     'blog' => 'Blog',
     'other' => 'Other',
-    'users' => 'Users',
     'group' => 'Group',
     'groups' => 'Groups',
+    'user' => 'User',
+    'users' => 'Users',
     'city' => 'City',
     'cities' => 'Cities',
+    'category' => 'Category',
+    'categories' => 'Categories',
     'article' => 'Article',
     'articles' => 'Articles',
     'tags' => 'Tags',
 
     'title' => 'Title',
     'name' => 'Name',
+    'first_name' => 'First Name',
+    'surname' => 'Surname',
+    'age' => 'Age',
+    'education' => 'Education',
+    'about' => 'About',
+    'experience' => 'Experience'
 ];
+

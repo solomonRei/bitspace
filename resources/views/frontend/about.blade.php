@@ -23,18 +23,18 @@
                 </div>
                 <div class="info">
                     <div class="title small">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                        Bitspace это
                     </div>
                     <div class="text mt-30">
-                       {{ $data->text }}
+                        {{ $data->text }}
                     </div>
                     <div class="contacts">
-                        <a href="tel: " class="contact-phone">
-                            <span>{{ $data->phone }} </span>
+                        <a href="tel: {{ $data->phone }}" class="contact-phone">
+                            <span>Телефон: {{ $data->phone }} </span>
                         </a>
                         <div class="contact-address">
 									<span>
-										{{ $data->address }}
+										Адресс: {{ $data->address }}
 									</span>
                         </div>
                         @if(!empty($data->link))
