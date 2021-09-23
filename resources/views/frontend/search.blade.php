@@ -3,7 +3,7 @@
     @livewire('profile-filter',[
         'categoryCurrent' => $categoryCurrent,
         'citiesList' => $cities,
-        'groupsList' => $groups
+    'groupsList' => $groups
     ])
 @endsection
 @section('footer-scripts')
