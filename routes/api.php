@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['namespace' => 'Api', 'prefix' => 'auth', 'middleware' => ['cors', 'bitspace.api']], function () {
+
+    //----------------- Check user -------------------------------
+    Route::post('check-user', 'CheckUserApiController@checkUser');
+});

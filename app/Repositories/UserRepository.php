@@ -16,6 +16,11 @@ class UserRepository extends CoreRepository
         return User::where('login', $login)->first();
     }
 
+    public function getUserByToken($token)
+    {
+        return User::where('api_token', $token)->first();
+    }
+
     public function getUserById($id)
     {
         return User::whereId($id)->first();

@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Languages;
 use App\Traits\File;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -22,6 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'login',
         'name',
         'ava',
         'email',
@@ -29,7 +32,8 @@ class User extends Authenticatable
         'phone',
         'surname',
         'is_hided',
-        'is_searched'
+        'is_searched',
+        'api_token'
     ];
 
     /**
@@ -143,6 +147,16 @@ class User extends Authenticatable
     public function setIsSearchedAttribute($value)
     {
         $this->attributes['is_searched'] = $value == 'on' ? 1 : 0;
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make(Str::random(10));
+    }
+
+    public function setApiTokenAttribute($value)
+    {
+        $this->attributes['api_token'] = Hash::make(Str::random(10));
     }
 
 

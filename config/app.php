@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'auth_key' => '1baecbb068f116fd977de2c4c2a208ccbf416dc35a97c87cfa0e4c452310be81',
     'name' => env('APP_NAME', 'Bitspace'),
 
     /*
