@@ -21,8 +21,8 @@ abstract class CoreRepository
 
     public function updateUser($user)
     {
-        User::whereId($user['id'])->update([
-            //
+        User::whereId($user['token'])->update([
+            // Data Fields
         ]);
         return true;
     }

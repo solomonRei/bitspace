@@ -15,7 +15,7 @@ class BaseController extends Controller
      * @param int $code
      * @return \Illuminate\Http\Response
      */
-    public function sendResponse($message,$result,$code = 200)
+    public function sendResponse($message,$result=[],$code = 200)
     {
         $response = [
             'success' => true,

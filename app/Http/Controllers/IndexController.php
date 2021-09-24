@@ -35,6 +35,7 @@ class IndexController extends Controller
 
     public function index(Request $request)
     {
+
         // Get Token & auth user
         if (isset($request->token) && !empty($request->token)) {
             if ($user = $this->userService->getUserToken($request->token)) {

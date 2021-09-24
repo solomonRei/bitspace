@@ -30,4 +30,20 @@ class CheckUserApiController extends BaseController
 
         return $this->sendError('Invalid Data');
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function refreshUser(Request $request)
+    {
+        $data = $request->json()->all();
+        if (isset($data['user']) && !empty($data['user'])) {
+            $this->userService->refreshUser($data['user']);
+
+            return $this->sendResponse('Success');
+        }
+
+        return $this->sendError('Invalid Data');
+    }
 }
