@@ -38,11 +38,15 @@ class IndexController extends Controller
 
         // Get Token & auth user
         if (isset($request->token) && !empty($request->token)) {
-            if ($user = $this->userService->getUserToken($request->token)) {
-                if (!auth()->check())
-                    $this->userService->doAuth($user['login']);
+            $token = base64_decode(substr($request->token, 8));
+            if(mb_detect_encoding($token, ['UTF-8'], true)) {
+                if ($user = $this->userService->getUserToken($token)) {
+                    if (!auth()->check())
+                        $this->userService->doAuth($user['login']);
 
+                        return redirect('/');
 //                $this->userService->refreshUser($user);
+                }
             }
         }
 
